@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Bhargav",
+    "usn": "4MK24CS400",
+    "fromDate": "2026-04-23",
+    "toDate": "2026-04-30",
+    "reason": "ddd",
+    "status": "Approved"
+  },
+  {
+    "name": "egeg",
+    "usn": "4MK24CS401",
+    "fromDate": "2026-04-23",
+    "toDate": "2026-04-30",
+    "reason": "ejhjwcjhdbckw",
+    "status": "Approved"
+  },
+  {
+    "name": "sjhxhgsa",
+    "usn": "12345",
+    "fromDate": "2026-04-30",
+    "toDate": "2026-05-10",
+    "reason": "wedding",
+    "status": "Rejected"
+  }
+]
