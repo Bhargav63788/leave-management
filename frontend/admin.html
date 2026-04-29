@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <p id="loading">Loading requests...</p>
+    <p id="loading">Loading...</p>
+    <div style="background:#333; padding:10px;">
+        <a href="student.html" style="color:white; margin-right:10px;">Apply</a>
+        <a href="status.html" style="color:white; margin-right:10px;">Status</a>
+        <a href="admin.html" style="color:white;">Admin</a>
+    </div>
+    <input type="text" id="searchBox" placeholder="Search by USN..." onkeyup="searchUSN()">
+    <div class="container">
+        <h1>Leave Requests</h1>
+        <div id="container"></div>
+    </div>
+    <button onclick="prevPage()">⬅ Prev</button>
+<button onclick="nextPage()">Next ➡</button>
+ <button onclick="logout()">Logout</button>
+    <script src="admin.js"></script>
+</body>
+</html>

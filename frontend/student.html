@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Leave System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div style="background:#333; padding:10px;">
+        <a href="student.html" style="color:white; margin-right:10px;">Apply</a>
+        <a href="status.html" style="color:white; margin-right:10px;">Status</a>
+        <a href="admin.html" style="color:white;">Admin</a>
+    </div>
+
+    <div class="container">
+        <h1>Leave Application</h1>
+        <p class="subtitle">Submit your leave request easily</p>
+
+        <form id="leaveForm">
+            <div class="input-group">
+                <label>Name</label>
+                <input type="text" id="name" required>
+            </div>
+
+            <div class="input-group">
+                <label>USN</label>
+                <input type="text" id="usn" placeholder="e.g. 1RV23CS001" required>
+            </div>
+
+            <div class="input-group">
+                <label>From Date</label>
+                <input type="date" id="fromDate" required>
+            </div>
+
+            <div class="input-group">
+                <label>To Date</label>
+                <input type="date" id="toDate" required>
+            </div>
+
+            <div class="input-group">
+                <label>Reason</label>
+                <textarea id="reason" required></textarea>
+            </div>
+
+            <button type="button" id="submitBtn">Submit Request</button>
+        </form>
+    </div>
+
+    <script src="student.js"></script>
+</body>
+</html>
