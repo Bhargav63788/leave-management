@@ -5,6 +5,10 @@ const mongoose = require("mongoose");
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+app.use(cors());
+app.use(express.json());
+
+// Schema
 const leaveSchema = new mongoose.Schema({
     name: String,
     usn: String,
@@ -19,11 +23,9 @@ const leaveSchema = new mongoose.Schema({
 
 const Leave = mongoose.model("Leave", leaveSchema);
 
-app.use(cors());
-app.use(express.json());
-
+// Routes
 app.get("/", (req, res) => {
-    res.send("Backend is running");
+    res.send("Backend is running ✅");
 });
 
 app.post("/submit-leave", async (req, res) => {
@@ -32,7 +34,7 @@ app.post("/submit-leave", async (req, res) => {
         await newLeave.save();
         res.send("Saved!");
     } catch (error) {
-        console.error("ERROR:", error);
+        console.error("Submit Error:", error);
         res.status(500).send("Error");
     }
 });
@@ -42,8 +44,8 @@ app.get("/get-leaves", async (req, res) => {
         const data = await Leave.find().sort({ _id: -1 });
         res.json(data);
     } catch (error) {
-        console.error("ERROR:", error);
-        res.status(500).send("Error");
+        console.error("Fetch Error:", error);
+        res.status(500).send("Error fetching leaves");
     }
 });
 
@@ -53,8 +55,8 @@ app.post("/update-status", async (req, res) => {
         await Leave.findByIdAndUpdate(id, { status });
         res.send("Updated");
     } catch (error) {
-        console.error("ERROR:", error);
-        res.status(500).send("Error");
+        console.error("Update Error:", error);
+        res.status(500).send("Error updating");
     }
 });
 
@@ -68,23 +70,22 @@ app.post("/login", (req, res) => {
     }
 });
 
+// Start server
 async function startServer() {
-    if (!process.env.MONGO_URL) {
-        console.error("MONGO_URL is not set");
-        process.exit(1);
-    }
-
     try {
-        await mongoose.connect(process.env.MONGO_URL, {
-            serverSelectionTimeoutMS: 10000
-        });
-        console.log("MongoDB Connected");
+        if (!process.env.MONGO_URL) {
+            throw new Error("MONGO_URL is missing");
+        }
+
+        await mongoose.connect(process.env.MONGO_URL);
+        console.log("MongoDB Connected ✅");
 
         app.listen(PORT, () => {
             console.log("Server running on " + PORT);
         });
+
     } catch (err) {
-        console.error("MongoDB connection failed:", err.message);
+        console.error("Startup Error ❌:", err.message);
         process.exit(1);
     }
 }
